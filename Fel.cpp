@@ -3,29 +3,29 @@
 //
 
 #include "Fel.h"
-#include <exception>
+#include <stdexcept>
 
-Fel::Fel(const std::string nume_, const double pret_) : nume(nume_), pret(pret_) {
+Fel::Fel(const std::string &nume_, const double pret_) : nume(nume_), pret(pret_) {
     if (nume.empty()) {
         throw std::runtime_error("Numele NU poate sa fie vid");
     }
 }
 
-Fel_Normal::Fel_Normal(const std::string nume_, const double pret_, const double pretCarne_,
+Fel_Normal::Fel_Normal(const std::string &nume_, const double pret_, const double pretCarne_,
                        const double pretOrigineAnimala_) : Fel(nume_, pret_),
                        pretCarne(pretCarne_), pretOrigineAnimala(pretOrigineAnimala_) {}
 double Fel_Normal::pretProdus() const {
     return pret + pretCarne * 0.8 + pretOrigineAnimala;
 }
 
-Fel_Vegetarian::Fel_Vegetarian(const std::string nume_, const double pret_, const double pretOrigineAnimala_,
+Fel_Vegetarian::Fel_Vegetarian(const std::string &nume_, const double pret_, const double pretOrigineAnimala_,
                                const double pretInlocuitorProteine_) : Fel(nume_, pret_),
                                pretOrigineAnimala(pretOrigineAnimala_), pretInlocuitorProteine(pretInlocuitorProteine_) {}
 double Fel_Vegetarian::pretProdus() const {
     return pret + pretInlocuitorProteine * 1.4 + pretOrigineAnimala;
 }
 
-Fel_Vegan::Fel_Vegan(const std::string nume_, const double pret_, const double pretInlocuitorProteine_,
+Fel_Vegan::Fel_Vegan(const std::string &nume_, const double pret_, const double pretInlocuitorProteine_,
                      const double pretInlocuitorLactate_) : Fel(nume_, pret_),
                      pretInlocuitorProteine(pretInlocuitorProteine_), pretInlocuitorLactate(pretInlocuitorLactate_) {}
 double Fel_Vegan::pretProdus() const {
