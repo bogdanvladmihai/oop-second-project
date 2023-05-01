@@ -7,7 +7,7 @@
 
 Fel::Fel(const std::string nume_, const double pret_) : nume(nume_), pret(pret_) {
     if (nume.empty()) {
-        throw std::runtime_error;
+        throw std::runtime_error("Numele NU poate sa fie vid");
     }
 }
 
