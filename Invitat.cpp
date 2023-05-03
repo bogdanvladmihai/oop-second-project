@@ -5,12 +5,30 @@
 #include "Invitat.h"
 #include <algorithm>
 
-Invitat::Invitat(const Meniu &M_) : M(std::make_shared<Meniu>(M_)) {}
+Invitat::Invitat(const Meniu &M_, const std::string &nume_) : nume(nume_), M(std::make_shared<Meniu>(M_)) {}
+
+const std::string Invitat::get_nume() const {
+    return nume;
+}
+
+double Invitat::get_cost() const {
+    return M -> pretMeniu();
+}
 
 inline bool Invitat::trebuie_impreuna(const std::shared_ptr<Invitat> &I) {
-    return std::find(impreuna.begin(), impreuna.end(), I) != impreuna.end();
+    for (const auto &e : impreuna) {
+        if (e -> nume == I -> nume) {
+            return true;
+        }
+    }
+    return false;
 }
 
 inline bool Invitat::trebuie_separat(const std::shared_ptr<Invitat> &I) {
-    return std::find(separat.begin(), separat.end(), I) != separat.end();
+    for (const auto &e : separat) {
+        if (e -> nume == I -> nume) {
+            return true;
+        }
+    }
+    return false;
 }
