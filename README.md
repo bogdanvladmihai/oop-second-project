@@ -24,7 +24,7 @@
 ## Tema 3
 
 #### Cerințe
-- [X] 2 șabloane de proiectare (design patterns, da, Facroty și Singleton în Manager (urmează))
+- [X] 2 șabloane de proiectare (design patterns, da, Facroty (pentru felurile de mâncare) și Singleton în Manager (urmează). Posibil să adaug și un bilder la Manager (urmează))
 - [ ] o funcție șablon (template) cu sens; minim 2 instanțieri
 - [ ] o clasă șablon cu sens; minim 2 instanțieri
 <!-- - [ ] o specializare pe funcție/clasă șablon -->
