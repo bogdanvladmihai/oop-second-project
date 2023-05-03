@@ -17,6 +17,7 @@ public:
     Fel(const std::string &nume_, const double pret_);
     virtual double pretProdus() const = 0;
     virtual ~Fel() = default;
+    virtual std::shared_ptr<Fel> clone() const = 0;
 };
 
 class Fel_Normal : public Fel {
@@ -26,6 +27,7 @@ public:
     Fel_Normal(const std::string &nume_, const double pret_, const double pretCarne_, const double pretOrigineAnimala_);
     double pretProdus() const override;
     virtual ~Fel_Normal() = default;
+    std::shared_ptr<Fel> clone() const override;
 };
 
 class Fel_Vegetarian : public Fel {
@@ -35,6 +37,7 @@ public:
     Fel_Vegetarian(const std::string &nume_, const double pret_, const double pretOrigineAnimala_, const double pretInlocuitorProteine_);
     double pretProdus() const override;
     virtual ~Fel_Vegetarian() = default;
+    std::shared_ptr<Fel> clone() const override;
 };
 
 class Fel_Vegan : public Fel {
@@ -44,6 +47,7 @@ public:
     Fel_Vegan(const std::string &nume_, const double pret_, const double pretInlocuitorProteine_, const double pretInlocuitorLactate_);
     double pretProdus() const override;
     virtual ~Fel_Vegan() = default;
+    std::shared_ptr<Fel> clone() const override;
 };
 
 class Fel_Factory {

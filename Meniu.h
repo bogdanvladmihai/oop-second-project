@@ -14,6 +14,7 @@ private:
     std::vector<std::shared_ptr<Fel>> feluri_mancare;
 public:
     Meniu();
+    Meniu(const Meniu &other);
     void adaugaFel(const std::shared_ptr<Fel> &fel);
     double pretMeniu() const;
 };

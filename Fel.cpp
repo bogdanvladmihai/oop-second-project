@@ -17,6 +17,9 @@ Fel_Normal::Fel_Normal(const std::string &nume_, const double pret_, const doubl
 double Fel_Normal::pretProdus() const {
     return pret + pretCarne * 0.8 + pretOrigineAnimala;
 }
+std::shared_ptr<Fel> Fel_Normal::clone() const {
+    return std::make_shared<Fel_Normal>(*this);
+}
 
 Fel_Vegetarian::Fel_Vegetarian(const std::string &nume_, const double pret_, const double pretOrigineAnimala_,
                                const double pretInlocuitorProteine_) : Fel(nume_, pret_),
@@ -24,12 +27,18 @@ Fel_Vegetarian::Fel_Vegetarian(const std::string &nume_, const double pret_, con
 double Fel_Vegetarian::pretProdus() const {
     return pret + pretInlocuitorProteine * 1.4 + pretOrigineAnimala;
 }
+std::shared_ptr<Fel> Fel_Vegetarian::clone() const {
+    return std::make_shared<Fel_Vegetarian>(*this);
+}
 
 Fel_Vegan::Fel_Vegan(const std::string &nume_, const double pret_, const double pretInlocuitorProteine_,
                      const double pretInlocuitorLactate_) : Fel(nume_, pret_),
                      pretInlocuitorProteine(pretInlocuitorProteine_), pretInlocuitorLactate(pretInlocuitorLactate_) {}
 double Fel_Vegan::pretProdus() const {
     return pret + pretInlocuitorProteine * 1.4 + pretInlocuitorLactate * 1.5;
+}
+std::shared_ptr<Fel> Fel_Vegan::clone() const {
+    return std::make_shared<Fel_Vegan>(*this);
 }
 
 std::shared_ptr<Fel> Fel_Factory::aperitiv_Normal() {
