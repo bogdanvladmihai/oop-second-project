@@ -1,11 +1,11 @@
-# Proiect OOP - Sistem de gestiune al unui locat pentru nunți
+# Proiect OOP - Sistem de gestiune al unui local pentru nunți
 
 ## Tema 2
 
 #### Cerințe
 - [X] separarea codului din clase în `.h` (sau `.hpp`) și `.cpp`
 - [X] moșteniri
-  - [ ] clasă cu atribut de tip pointer la o clasă de bază cu derivate
+  - [X] clasă cu atribut de tip pointer la o clasă de bază cu derivate
   - [X] funcții virtuale (pure) apelate prin pointeri de bază din clasa de mai sus, constructori virtuali (clone)
     - minim o funcție virtuală va fi **specifică temei** (e.g. nu simple citiri/afișări)
   - [X] apelarea constructorului din clasa de bază din constructori din derivate
