@@ -47,11 +47,12 @@ void Masa::remove_invitat(const std::shared_ptr<Invitat> invitat) {
 }
 
 double Masa::pret_masa() const {
-    double answer = pret_consumabile_masa;
+    double answer = pret_consumabile_masa * numar_locuri;
     for (auto &a : angajati) {
         answer += a -> getSalariu();
     }
     for (auto &i : invitati) {
-        answer += i ->
+        answer += i -> get_cost();
     }
+    return answer;
 }
