@@ -2,7 +2,7 @@
 // Created by vbogd on 5/3/2023.
 //
 
-#include "Angajat.h"
+#include "../headers/Angajat.h"
 
 Angajat::Angajat(const std::string &nume_, int salariu_) : nume(nume_), salariu(salariu_) {}
 

@@ -2,7 +2,7 @@
 // Created by vbogd on 5/1/2023.
 //
 
-#include "Meniu.h"
+#include "../headers/Meniu.h"
 
 Meniu::Meniu() {}
 

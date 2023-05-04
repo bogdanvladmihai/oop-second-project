@@ -2,8 +2,8 @@
 // Created by vbogd on 5/3/2023.
 //
 
-#include "Masa.h"
-#include "Erori.h"
+#include "../headers/Masa.h"
+#include "../headers/Erori.h"
 
 const int Masa::MAX_LOCURI_PER_MASA = 25;
 

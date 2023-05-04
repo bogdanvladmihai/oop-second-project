@@ -2,7 +2,7 @@
 // Created by vbogd on 5/1/2023.
 //
 
-#include "Fel.h"
+#include "../headers/Fel.h"
 #include <stdexcept>
 
 Fel::Fel(const std::string &nume_, const double pret_) : nume(nume_), pret(pret_) {

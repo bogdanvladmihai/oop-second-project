@@ -80,7 +80,7 @@ endfunction()
 ###############################################################################
 
 # NOTE: update executable name in .github/workflows/cmake.yml:25 when changing name here
-add_executable(${PROJECT_NAME} main.cpp Meniu.cpp Meniu.h Fel.cpp Fel.h Invitat.cpp Invitat.h Angajat.cpp Angajat.h Masa.cpp Masa.h Erori.cpp Erori.h)
+add_executable(${PROJECT_NAME} main.cpp src/Meniu.cpp headers/Meniu.h src/Fel.cpp headers/Fel.h src/Invitat.cpp headers/Invitat.h src/Angajat.cpp headers/Angajat.h src/Masa.cpp headers/Masa.h src/Erori.cpp headers/Erori.h)
 
 ###############################################################################
 

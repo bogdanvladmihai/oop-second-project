@@ -2,7 +2,7 @@
 // Created by vbogd on 5/1/2023.
 //
 
-#include "Invitat.h"
+#include "../headers/Invitat.h"
 #include <algorithm>
 
 Invitat::Invitat(const Meniu &M_, const std::string &nume_) : nume(nume_), M(std::make_shared<Meniu>(M_)) {}

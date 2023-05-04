@@ -1,5 +1,9 @@
 #include <iostream>
-#include "Meniu.h"
+#include "headers/Meniu.h"
+
+// TODO maine: clasa Sala (cu object pool), clasa Manager (cu singleton si builder),
+// TODO maine: de completat clasa cu exceptii
+// TODO maine: retine datele intr-un fisier, gandeste-te la cum ar arata un meniu
 
 int main() {
     Meniu M;
