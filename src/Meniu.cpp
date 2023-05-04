@@ -23,3 +23,33 @@ double Meniu::pretMeniu() const {
     }
     return sum;
 }
+
+std::ostream& operator << (std::ostream &out, const Meniu &M) {
+    if (M.feluri_mancare.empty()) {
+        out << "Meniul nu a fost inca selectat.\n";
+        return out;
+    }
+
+    int cnt_vegan = 0, cnt_normal = 0, cnt_vegetarian = 0;
+    for (auto &men : M.feluri_mancare) {
+        if (auto f = std::dynamic_pointer_cast<Fel_Normal>(men)) {
+            cnt_normal++;
+        } else if (auto e = std::dynamic_pointer_cast<Fel_Vegan>(men)) {
+            cnt_vegan++;
+        } else {
+            cnt_vegetarian++;
+        }
+    }
+    out << "Meniul are ";
+    if (cnt_normal > 0) {
+        out << cnt_normal << " elemente de tip mancare normala; ";
+    }
+    if (cnt_vegan) {
+        out << cnt_vegan << " elemente de tip mancare vegana;";
+    }
+    if (cnt_vegetarian) {
+        out << cnt_vegetarian << " elemente de tip mancare vegetariana;";
+    }
+    out << "\n";
+    return out;
+}

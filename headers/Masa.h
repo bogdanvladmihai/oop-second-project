@@ -21,6 +21,7 @@ public:
     void remove_angajat(const std::shared_ptr<Angajat> angajat);
     void add_invitat(const std::shared_ptr<Invitat> invitat);
     void remove_invitat(const std::shared_ptr<Invitat> invitat);
+    friend std::ostream& operator << (std::ostream &out, const Masa &M);
     double pret_masa() const;
 };
 

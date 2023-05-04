@@ -22,6 +22,11 @@ const std::string Angajat::get_nume() const {
     return nume;
 }
 
+std::ostream& operator << (std::ostream &out, const Angajat &A) {
+    out << "Angajatul " << A.nume << " are salariu " << A.salariu << "\n";
+    return out;
+}
+
 std::shared_ptr<Angajat> Angajat_Factory::Barman() {
     return std::make_shared<Angajat>(Angajat("Sergiu Lazar", 1800));
 }

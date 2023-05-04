@@ -17,6 +17,7 @@ public:
     Meniu(const Meniu &other);
     void adaugaFel(const std::shared_ptr<Fel> &fel);
     double pretMeniu() const;
+    friend std::ostream& operator << (std::ostream &out, const Meniu &M);
 };
 
 #endif //OOP_MENIU_H

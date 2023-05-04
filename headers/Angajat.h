@@ -5,6 +5,7 @@
 #ifndef OOP_ANGAJAT_H
 #define OOP_ANGAJAT_H
 
+#include <iostream>
 #include <string>
 #include <memory>
 
@@ -18,6 +19,7 @@ public:
     void setSalariu(const int salariu_);
     const std::string get_nume() const;
     bool operator < (const Angajat &other) const;
+    friend std::ostream& operator << (std::ostream &out, const Angajat &A);
 };
 
 class Angajat_Factory : public Angajat {

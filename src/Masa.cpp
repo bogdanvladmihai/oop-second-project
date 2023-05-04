@@ -8,7 +8,11 @@
 const int Masa::MAX_LOCURI_PER_MASA = 25;
 
 Masa::Masa(const int numar_locuri_, const int pret_consumabile_masa_) : numar_locuri(numar_locuri_),
-                                                                        pret_consumabile_masa(pret_consumabile_masa_) {}
+                                                                        pret_consumabile_masa(pret_consumabile_masa_) {
+    if (numar_locuri_ > MAX_LOCURI_PER_MASA) {
+        throw Eroare_Masa("S-a depasit numarul maxim de locuri la o masa.");
+    }
+}
 
 // Voi vrea sa tin EXACT angajat (nu o copie a sa). La fel al invitat.
 void Masa::add_angajat(const std::shared_ptr<Angajat> angajat) {
@@ -55,4 +59,25 @@ double Masa::pret_masa() const {
         answer += i -> get_cost();
     }
     return answer;
+}
+
+std::ostream& operator << (std::ostream &out, const Masa &M) {
+    out << "Masa are " << M.numar_locuri << " locuri.\n";
+    if (M.invitati.empty()) {
+        out << "Masa nu are invitati repartizati la ea.\n";
+    } else {
+        out << "Masa are urmatorii invitati: \n";
+        for (auto &inv : M.invitati) {
+            out << inv;
+        }
+    }
+    if (M.angajati.empty()) {
+        out << "Masa nu are angajati repartizati la ea.\n";
+    } else {
+        out << "Masa are urmatorii angajati: \n";
+        for (auto &ang : M.angajati) {
+            out << ang;
+        }
+    }
+    return out;
 }
