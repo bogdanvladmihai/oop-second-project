@@ -23,14 +23,14 @@ void Masa::add_invitat(const std::shared_ptr<Invitat> invitat) {
 }
 
 void Masa::remove_angajat(const std::shared_ptr<Angajat> angajat) {
-    int pos = -1;
+    size_t pos = angajati.size();
     for (size_t i = 0; i < angajati.size(); i++) {
         if (angajati[i] -> get_nume() == angajat -> get_nume()) {
             pos = i;
             break;
         }
     }
-    if (pos == 1) {
+    if (pos == angajati.size()) {
         throw Eroare_Update_Masa("Angajatul nu raspunde de masa indicata.");
     }
     angajati.erase(angajati.begin() + pos);
