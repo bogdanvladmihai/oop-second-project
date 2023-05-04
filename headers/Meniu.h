@@ -5,6 +5,7 @@
 #ifndef OOP_MENIU_H
 #define OOP_MENIU_H
 
+#include <iostream>
 #include <vector>
 #include <utility>
 #include "Fel.h"
