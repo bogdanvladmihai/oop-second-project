@@ -32,9 +32,9 @@ std::ostream& operator << (std::ostream &out, const Meniu &M) {
 
     int cnt_vegan = 0, cnt_normal = 0, cnt_vegetarian = 0;
     for (auto &men : M.feluri_mancare) {
-        if (auto f = std::dynamic_pointer_cast<Fel_Normal>(men)) {
+        if (std::dynamic_pointer_cast<Fel_Normal>(men)) {
             cnt_normal++;
-        } else if (auto e = std::dynamic_pointer_cast<Fel_Vegan>(men)) {
+        } else if (std::dynamic_pointer_cast<Fel_Vegan>(men)) {
             cnt_vegan++;
         } else {
             cnt_vegetarian++;

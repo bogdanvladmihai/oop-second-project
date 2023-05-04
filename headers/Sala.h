@@ -14,6 +14,7 @@ private:
     static const size_t MAX_NUMAR_MESE;
     bool used;
     std::vector<std::shared_ptr<Masa>> mese;
+    friend class Sala_Builder;
 public:
     Sala();
     bool isUsed() const;
@@ -28,11 +29,11 @@ public:
 
 class Sala_Pool {
 private:
-    static const int NUMAR_MAX_SALI = 5;
-    std::vector<Sala> sali{NUMAR_MAX_SALI};
+    static const int MAX_SALI;
+    std::vector<Sala> sali;
 public:
+    Sala_Pool();
     Sala& get_sala();
 };
-
 
 #endif //OOP_SALA_H

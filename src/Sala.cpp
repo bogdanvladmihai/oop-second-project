@@ -5,6 +5,7 @@
 #include "../headers/Sala.h"
 
 const size_t Sala::MAX_NUMAR_MESE = 5;
+const int Sala_Pool::MAX_SALI = 5;
 
 Sala::Sala() : used(false) {}
 
@@ -62,4 +63,16 @@ std::ostream& operator << (std::ostream &out, const Sala &S) {
     }
     out << "\n";
     return out;
+}
+
+Sala_Pool::Sala_Pool() = default;
+
+Sala& Sala_Pool::get_sala() {
+    for (auto &s : sali) {
+        if (!s.isUsed()) {
+            s.use();
+            return s;
+        }
+    }
+    throw Eroare_Sali("Prea multi sali folosite.");
 }

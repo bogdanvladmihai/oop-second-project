@@ -37,14 +37,14 @@ void Masa::remove_angajat(const std::shared_ptr<Angajat> angajat) {
 }
 
 void Masa::remove_invitat(const std::shared_ptr<Invitat> invitat) {
-    int pos = -1;
+    size_t pos = invitati.size();
     for (size_t i = 0; i < invitati.size(); i++) {
         if (invitati[i] -> get_nume() == invitat -> get_nume()) {
             pos = i;
             break;
         }
     }
-    if (pos == -1) {
+    if (pos == invitati.size()) {
         throw Eroare_Update_Masa("Invitatul nu este trecut la masa indicata.");
     }
     invitati.erase(invitati.begin() + pos);
