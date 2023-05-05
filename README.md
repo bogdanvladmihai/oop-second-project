@@ -10,7 +10,7 @@
     - minim o funcție virtuală va fi **specifică temei** (e.g. nu simple citiri/afișări)
   - [X] apelarea constructorului din clasa de bază din constructori din derivate
   - [X] smart pointers
-  - [ ] `dynamic_cast`
+  - [X] `dynamic_cast`
 - [ ] suprascris cc/op= pentru copieri/atribuiri corecte, copy and swap
 - [ ] excepții
   - [X] ierarhie proprie cu baza `std::exception` sau derivată din `std::exception`; minim 2 clase pentru erori specifice
