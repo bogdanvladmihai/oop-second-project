@@ -16,8 +16,6 @@ public:
     Invitat(const Meniu &M_, const std::string &nume_);
     const std::string get_nume() const;
     double get_cost() const;
-    bool trebuie_separat(const std::shared_ptr<Invitat> &I);
-    bool trebuie_impreuna(const std::shared_ptr<Invitat> &I);
     friend std::ostream& operator << (std::ostream&, const Invitat &I);
 };
 

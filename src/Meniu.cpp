@@ -15,6 +15,10 @@ Meniu::Meniu(const Meniu &other) {
     }
 }
 
+void Meniu::clear() {
+    feluri_mancare.clear();
+}
+
 void Meniu::adaugaFel(const std::shared_ptr<Fel> &fel) {
     if (feluri_mancare.size() == MAX_FELURI) {
         throw Eroare_Meniu("Prea multe feluri de mancare adaugate.");

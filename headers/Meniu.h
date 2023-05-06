@@ -17,6 +17,7 @@ private:
 public:
     Meniu();
     Meniu(const Meniu &other);
+    void clear();
     void adaugaFel(const std::shared_ptr<Fel> &fel);
     void stergeFel(const size_t pos);
     double pretMeniu() const;
