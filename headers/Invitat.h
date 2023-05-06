@@ -12,7 +12,6 @@ class Invitat {
 private:
     std::string nume;
     std::shared_ptr<Meniu> M;
-    std::vector<std::shared_ptr<Invitat>> impreuna, separat;
 public:
     Invitat(const Meniu &M_, const std::string &nume_);
     const std::string get_nume() const;

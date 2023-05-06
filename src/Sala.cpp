@@ -5,7 +5,6 @@
 #include "../headers/Sala.h"
 
 const size_t Sala::MAX_NUMAR_MESE = 5;
-const int Sala_Pool::MAX_SALI = 5;
 
 Sala::Sala() : used(false) {}
 
@@ -36,11 +35,11 @@ void Sala::addMasa(std::shared_ptr<Masa> masa) {
     mese.push_back(masa);
 }
 
-void Sala::removeMasa(std::shared_ptr<Masa> masa) {
-    if (std::find(mese.begin(), mese.end(), masa) == mese.end()) {
+void Sala::removeMasa(const size_t pos) {
+    if (pos >= mese.size()) {
         throw Eroare_Update_Sala("Masa pe care incercati sa o eliminati nu exista in sala indicata.");
     }
-    mese.erase(std::find(mese.begin(), mese.end(), masa));
+    mese.erase(mese.begin() + pos);
 }
 
 double Sala::get_pret() const {
@@ -49,6 +48,56 @@ double Sala::get_pret() const {
         answer += m -> pret_masa();
     }
     return answer;
+}
+
+void Sala::add_invitat(const size_t posMasa, std::shared_ptr<Invitat> I) {
+    if (posMasa >= mese.size()) {
+        throw Eroare_Masa("Masa nu exista.");
+    }
+    try {
+        mese[posMasa] -> add_invitat(I);
+    } catch(Eroare_Update_Masa& err) {
+        std::cout << err.what() << "\n";
+    }
+}
+
+void Sala::add_anagajat(const size_t posMasa, std::shared_ptr<Angajat> A) {
+    if (posMasa >= mese.size()) {
+        throw Eroare_Masa("Masa nu exista.");
+    }
+    try {
+        mese[posMasa] -> add_angajat(A);
+    } catch(Eroare_Update_Masa &err) {
+        std::cout << err.what() << "\n";
+    }
+}
+
+void Sala::rem_angajati(const size_t posMasa, const size_t posAng) {
+    if (posMasa >= mese.size()) {
+        throw Eroare_Masa("Masa nu exista.");
+    }
+    try {
+        mese[posMasa] -> remove_angajat(posAng);
+    } catch(Eroare_Update_Masa &err) {
+        std::cout << err.what() << "\n";
+    }
+}
+
+void Sala::rem_invitat(const size_t posMasa, const size_t posInv) {
+    if (posMasa >= mese.size()) {
+        throw Eroare_Masa("Masa nu exista.");
+    }
+    try {
+        mese[posMasa] -> remove_invitat(posInv);
+    } catch(Eroare_Update_Masa &err) {
+        std::cout << err.what() << "\n";
+    }
+}
+
+void Sala::add_personal() {
+    for (auto &M : mese) {
+        M -> add_personal();
+    }
 }
 
 std::ostream& operator << (std::ostream &out, const Sala &S) {

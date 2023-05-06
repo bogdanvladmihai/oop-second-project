@@ -22,7 +22,12 @@ public:
     void goleste_sala();
     void stopUsing();
     void addMasa(std::shared_ptr<Masa> masa);
-    void removeMasa(std::shared_ptr<Masa> masa);
+    void removeMasa(const size_t pos);
+    void add_invitat(const size_t posMasa, std::shared_ptr<Invitat> I);
+    void add_anagajat(const size_t posMasa, std::shared_ptr<Angajat> A);
+    void rem_invitat(const size_t posMasa, const size_t posInv);
+    void rem_angajati(const size_t posMasa, const size_t posAng);
+    void add_personal();
     friend std::ostream& operator << (std::ostream &out, const Sala &S);
     double get_pret() const;
 };

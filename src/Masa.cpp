@@ -6,6 +6,7 @@
 #include "../headers/Erori.h"
 
 const int Masa::MAX_LOCURI_PER_MASA = 25;
+const int Masa::LIMIT_RAPORT = 6;
 
 Masa::Masa(const int numar_locuri_, const int pret_consumabile_masa_) : numar_locuri(numar_locuri_),
                                                                         pret_consumabile_masa(pret_consumabile_masa_) {
@@ -22,29 +23,15 @@ void Masa::add_invitat(const std::shared_ptr<Invitat> invitat) {
     invitati.push_back(invitat);
 }
 
-void Masa::remove_angajat(const std::shared_ptr<Angajat> angajat) {
-    size_t pos = angajati.size();
-    for (size_t i = 0; i < angajati.size(); i++) {
-        if (angajati[i] -> get_nume() == angajat -> get_nume()) {
-            pos = i;
-            break;
-        }
-    }
-    if (pos == angajati.size()) {
+void Masa::remove_angajat(const size_t pos) {
+    if (pos >= angajati.size()) {
         throw Eroare_Update_Masa("Angajatul nu raspunde de masa indicata.");
     }
     angajati.erase(angajati.begin() + pos);
 }
 
-void Masa::remove_invitat(const std::shared_ptr<Invitat> invitat) {
-    size_t pos = invitati.size();
-    for (size_t i = 0; i < invitati.size(); i++) {
-        if (invitati[i] -> get_nume() == invitat -> get_nume()) {
-            pos = i;
-            break;
-        }
-    }
-    if (pos == invitati.size()) {
+void Masa::remove_invitat(const size_t pos) {
+    if (pos >= invitati.size()) {
         throw Eroare_Update_Masa("Invitatul nu este trecut la masa indicata.");
     }
     invitati.erase(invitati.begin() + pos);
@@ -59,6 +46,26 @@ double Masa::pret_masa() const {
         answer += i -> get_cost();
     }
     return answer;
+}
+
+void Masa::add_angajat(const Angajat &A) {
+    angajati.push_back(std::make_shared<Angajat>(A));
+}
+
+void Masa::add_personal() {
+    int tmp = 0;
+    while (invitati.size() / angajati.size() >= LIMIT_RAPORT) {
+        if (tmp % 4 == 0) {
+            add_angajat(Angajat_Factory::Ospatar());
+        } else if (tmp % 4 == 1) {
+            add_angajat(Angajat_Factory::Barman());
+        } else if (tmp % 4 == 2) {
+            add_angajat(Angajat_Factory::Ajutor_Bucatarie());
+        } else {
+            add_angajat(Angajat_Factory::Bucatar());
+        }
+        tmp++;
+    }
 }
 
 std::ostream& operator << (std::ostream &out, const Masa &M) {
