@@ -13,10 +13,12 @@
 class Meniu {
 private:
     std::vector<std::shared_ptr<Fel>> feluri_mancare;
+    static const size_t MAX_FELURI;
 public:
     Meniu();
     Meniu(const Meniu &other);
     void adaugaFel(const std::shared_ptr<Fel> &fel);
+    void stergeFel(const size_t pos);
     double pretMeniu() const;
     friend std::ostream& operator << (std::ostream &out, const Meniu &M);
 };

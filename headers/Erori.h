@@ -32,4 +32,9 @@ public:
     explicit Eroare_Update_Sala(const std::string &err) noexcept;
 };
 
+class Eroare_Meniu : public std::logic_error {
+public:
+    explicit Eroare_Meniu(const std::string &err) noexcept;
+};
+
 #endif //OOP_ERORI_H

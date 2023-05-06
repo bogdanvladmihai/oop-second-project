@@ -13,3 +13,5 @@ Eroare_Sali::Eroare_Sali(const std::string &err) noexcept : std::logic_error(err
 Eroare_Inchidere_Sala::Eroare_Inchidere_Sala(const std::string &err) noexcept : Eroare_Sali(err) {}
 
 Eroare_Update_Sala::Eroare_Update_Sala(const std::string &err) noexcept : Eroare_Sali(err) {}
+
+Eroare_Meniu::Eroare_Meniu(const std::string &err) noexcept : std::logic_error(err) {}

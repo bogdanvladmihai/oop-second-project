@@ -74,16 +74,16 @@ std::ostream& operator << (std::ostream &out, const Masa &M) {
         out << "Masa nu are invitati repartizati la ea.\n";
     } else {
         out << "Masa are urmatorii invitati: \n";
-        for (auto &inv : M.invitati) {
-            out << inv;
+        for (size_t i = 0; i < M.invitati.size(); i++) {
+            out << i << " " << M.invitati[i];
         }
     }
     if (M.angajati.empty()) {
         out << "Masa nu are angajati repartizati la ea.\n";
     } else {
         out << "Masa are urmatorii angajati: \n";
-        for (auto &ang : M.angajati) {
-            out << ang;
+        for (size_t i = 0; i < M.angajati.size(); i++) {
+            out << i << ": " << M.angajati[i];
         }
     }
     return out;

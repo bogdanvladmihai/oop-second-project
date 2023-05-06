@@ -42,13 +42,19 @@ void Manager::rem_sala(const size_t pos) {
             std::cout << err.what() << "\n";
         }
     }
+    throw Eroare_Sali("Sala nu exista.");
 }
 
-void Manager::add_masa(const int numar_locuri, int pret_consumabile_masa) {
+void Manager::add_masa(const size_t posSala, const int numar_locuri, int pret_consumabile_masa) {
+    if (posSala >= sali.size()) {
+        throw Eroare_Sali("Sala nu exista.");
+    }
     try {
         std::shared_ptr<Masa> M = std::make_shared<Masa>(Masa(numar_locuri, pret_consumabile_masa));
-        mese.push_back(M);
+        sali[posSala].addMasa(M);
     } catch(Eroare_Masa &err) {
+        std::cout << err.what() << "\n";
+    } catch(Eroare_Sali &err) {
         std::cout << err.what() << "\n";
     }
 }
@@ -128,4 +134,12 @@ void Manager::add_personal(const size_t posSala) {
         throw Eroare_Sali("Sala nu exista");
     }
     sali[posSala].add_personal();
+}
+
+double Manager::get_cost() const {
+    double answer = 0;
+    for (auto &S : sali) {
+        answer += S.get_pret();
+    }
+    return answer;
 }

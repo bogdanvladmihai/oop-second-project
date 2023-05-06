@@ -3,8 +3,11 @@
 //
 
 #include "../headers/Meniu.h"
+#include "../headers/Erori.h"
 
 Meniu::Meniu() {}
+
+const size_t Meniu::MAX_FELURI = 7;
 
 Meniu::Meniu(const Meniu &other) {
     for (const auto &f : other.feluri_mancare) {
@@ -13,7 +16,17 @@ Meniu::Meniu(const Meniu &other) {
 }
 
 void Meniu::adaugaFel(const std::shared_ptr<Fel> &fel) {
+    if (feluri_mancare.size() == MAX_FELURI) {
+        throw Eroare_Meniu("Prea multe feluri de mancare adaugate.");
+    }
     feluri_mancare.push_back(fel);
+}
+
+void Meniu::stergeFel(const size_t pos) {
+    if (pos >= feluri_mancare.size()) {
+        throw Eroare_Meniu("Felul de mancare selectat nu exista.");
+    }
+    feluri_mancare.erase(feluri_mancare.begin() + pos);
 }
 
 double Meniu::pretMeniu() const {
