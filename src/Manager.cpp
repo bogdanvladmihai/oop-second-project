@@ -22,6 +22,7 @@ std::ostream& operator << (std::ostream &out, const Manager &M) {
         out << i << ": " << M.sali[i];
     }
     out << "\n";
+    return out;
 }
 
 void Manager::add_sala() {
