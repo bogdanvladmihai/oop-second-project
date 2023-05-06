@@ -1,4 +1,4 @@
-# Proiect OOP - Sistem de gestiune al unui local pentru nunți
+# Proiect OOP - Sistem de gestiune al unui local pentru evenimente
 
 ## Tema 2
 
