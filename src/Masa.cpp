@@ -132,3 +132,17 @@ void Masa::modif_sal(const size_t posAng, double newSal) {
     }
     angajati[posAng]->setSalariu(newSal);
 }
+
+void Masa::add_fel(const size_t idInv, std::shared_ptr<Fel> F) {
+    if (idInv >= invitati.size()) {
+        throw Eroare_Masa("Invitatul nu există.");
+    }
+    invitati[idInv]->add_fel(F);
+}
+
+void Masa::del_fel(const size_t idInv, const size_t idPos) {
+    if (idInv >= invitati.size()) {
+        throw Eroare_Masa("Invitatul nu există.");
+    }
+    invitati[idInv] ->del_fel(idPos);
+}

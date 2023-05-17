@@ -30,6 +30,8 @@ public:
     double pret_masa() const;
     void add_personal();
     void modif_sal(const size_t posAng, double newSal);
+    void add_fel(const size_t inInv, std::shared_ptr<Fel> F);
+    void del_fel(const size_t idInv, const size_t idPos);
 };
 
 

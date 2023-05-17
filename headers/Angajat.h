@@ -18,7 +18,6 @@ public:
     Angajat(const Angajat &other);
     int getSalariu() const;
     void setSalariu(const int salariu_);
-    const std::string get_nume() const;
     bool operator < (const Angajat &other) const;
     friend std::ostream& operator << (std::ostream &out, const Angajat &A);
 };

@@ -165,6 +165,20 @@ void Manager::modif_salariu(const size_t posSala, const size_t posMasa, const si
     sali[posSala].modif_salariu(posMasa, posAng, newSal);
 }
 
+void Manager::add_fel(const size_t idSala, const size_t idMasa, const size_t idInv, std::shared_ptr <Fel> F) {
+    if (idSala >= sali.size()) {
+        throw Eroare_Sali("Sala nu există.");
+    }
+    sali[idSala].add_fel(idMasa, idInv, F);
+}
+
+void Manager::del_fel(const size_t idSala, const size_t idMasa, const size_t idInv, const size_t idPos) {
+    if (idSala >= sali.size()) {
+        throw Eroare_Sali("Sala nu există.");
+    }
+    sali[idSala].del_fel(idMasa, idInv, idPos);
+}
+
 double Manager::get_cost() const {
     double answer = 0;
     for (auto &S : sali) {

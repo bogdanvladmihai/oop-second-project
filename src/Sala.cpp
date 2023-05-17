@@ -160,3 +160,17 @@ void Sala::modif_salariu(size_t posMasa, size_t posAng, double newSal) {
     }
     mese[posMasa]->modif_sal(posAng, newSal);
 }
+
+void Sala::add_fel(const size_t idMasa, const size_t idInv, std::shared_ptr<Fel> F) {
+    if (idMasa >= mese.size()) {
+        throw Eroare_Masa("Masa nu există.");
+    }
+    mese[idMasa]->add_fel(idInv, F);
+}
+
+void Sala::del_fel(const size_t idMasa, const size_t idInv, const size_t idPos) {
+    if (idMasa >= mese.size()) {
+        throw Eroare_Masa("Masa nu există.");
+    }
+    mese[idMasa]->del_fel(idInv, idPos);
+}

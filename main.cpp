@@ -16,7 +16,7 @@ void printMenu() {
     std::cout << "[10] Adăugare fel de mâncare pentru invitat.\n";
     std::cout << "[11] Adăugare personal lipsă.\n";
     std::cout << "[12] Afișare preț total.\n";
-    std::cout << "[13] Ștergeți meniul unui invitat.\n";
+    std::cout << "[13] Ștergeți un fel de mâncare din meniul unui invitat.\n";
     std::cout << "[14] Modifică salariul unui angajat.\n";
     std::cout << "[15] Golește o sală.\n";
     std::cout << "[Q] Quit.\n";
@@ -252,8 +252,24 @@ int main() {
                 std::cout << err.what() << "\n";
             }
         } else if (option == 10) {
-            // TODO Adauga fel de mancare pentru invitat
-
+            size_t idSala, idMasa, idInv;
+            std::cout << "Numărul sălii este: ";
+            std::cin >> idSala;
+            std::cout << "Numărul mesei este: ";
+            std::cin >> idMasa;
+            std::cout << "Numărul invitatului este: ";
+            std::cin >> idInv;
+            std::string numeFel;
+            std::cout << "Numele feluiui de mâncare este: ";
+            std::cin >> numeFel;
+            double P1, P2, P3;
+            std::cout << "Prețurile pentru produse sunt: (trei valori) ";
+            std::cin >> P1 >> P2 >> P3;
+            try {
+                manager.add_fel(idSala, idMasa, idInv, std::make_shared<Fel_Normal>(Fel_Normal(numeFel, P1, P2, P3)));
+            } catch (Eroare_Gestiune &err) {
+                std::cout << err.what() << "\n";
+            }
         } else if (option == 11) {
             size_t idSala;
             std::cout << "Doriți să completați cu personal la toate sălile? (D/N): ";
@@ -280,8 +296,21 @@ int main() {
             std::cout << "Costul total pentru organiarea evenimentului este " << manager.get_cost() << "\n";
         } else if (option == 13) {
             std::cout << manager << "\n";
-            // TODO Stergeți meniul unui invitat
-
+            size_t idSala, idMasa, idInv;
+            std::cout << "Numărul sălii este: ";
+            std::cin >> idSala;
+            std::cout << "Numărul mesei este: ";
+            std::cin >> idMasa;
+            std::cout << "Numărul invitatului este: ";
+            std::cin >> idInv;
+            size_t idPos;
+            std::cout << "Numărul felului de mâncare este: ";
+            std::cin >> idPos;
+            try {
+                manager.del_fel(idSala, idSala, idInv, idPos);
+            } catch (Eroare_Gestiune &err) {
+                std::cout << err.what() << "\n";
+            }
         } else if (option == 14) {
             std::cout << manager << "\n";
             size_t idSala, idMasa, idAng;

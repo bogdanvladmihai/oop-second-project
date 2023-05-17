@@ -33,7 +33,9 @@ public:
     void add_personal();
     friend std::ostream& operator << (std::ostream &out, const Sala &S);
     double get_pret() const;
-    void modif_salariu(size_t posMasa, size_t posAng, double newSal);
+    void modif_salariu(const size_t posMasa, const size_t posAng, double newSal);
+    void add_fel(const size_t idMasa, const size_t idInv, std::shared_ptr<Fel> F);
+    void del_fel(const size_t idMasa, const size_t idInv, const size_t idPos);
 };
 
 class Sala_Pool {

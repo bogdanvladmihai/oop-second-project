@@ -21,3 +21,11 @@ std::ostream& operator << (std::ostream &out, const Invitat &I) {
     out << "Invitatul " << I.nume << " are meniul urmator\n " << I.M << "\n";
     return out;
 }
+
+void Invitat::add_fel(std::shared_ptr<Fel> F) {
+    M ->adaugaFel(F);
+}
+
+void Invitat::del_fel(const size_t pos) {
+    M ->stergeFel(pos);
+}

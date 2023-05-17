@@ -20,10 +20,6 @@ bool Angajat::operator<(const Angajat &other) const {
     return salariu < other.salariu;
 }
 
-const std::string Angajat::get_nume() const {
-    return nume;
-}
-
 std::ostream& operator << (std::ostream &out, const Angajat &A) {
     out << "Angajatul " << A.nume << " are salariu " << A.salariu << "\n";
     return out;

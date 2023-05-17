@@ -19,6 +19,8 @@ public:
     void modif_meniu(const Meniu &men);
     double get_cost() const;
     friend std::ostream& operator << (std::ostream&, const Invitat &I);
+    void add_fel(std::shared_ptr<Fel> F);
+    void del_fel(const size_t pos);
 };
 
 #endif //OOP_INVITAT_H
