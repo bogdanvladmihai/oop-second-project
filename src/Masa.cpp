@@ -30,10 +30,10 @@ Masa& Masa::operator=(const Masa &other) {
         pret_consumabile_masa = other.pret_consumabile_masa;
         invitati.clear();
         angajati.clear();
-        for (auto e : angajati) {
+        for (auto e : other.angajati) {
             angajati.push_back(std::make_shared<Angajat>(*e));
         }
-        for (auto e : invitati) {
+        for (auto e : other.invitati) {
             invitati.push_back(std::make_shared<Invitat>(*e));
         }
     }
