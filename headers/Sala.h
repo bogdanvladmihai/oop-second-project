@@ -40,7 +40,7 @@ public:
 
 class Sala_Pool {
 private:
-    static const int MAX_SALI;
+    static const size_t MAX_SALI;
     std::vector<Sala> sali;
 public:
     Sala_Pool();

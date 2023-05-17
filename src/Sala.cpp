@@ -5,6 +5,7 @@
 #include "../headers/Sala.h"
 
 const size_t Sala::MAX_NUMAR_MESE = 5;
+const size_t Sala_Pool::MAX_SALI = 10;
 
 Sala::Sala() : used(false) {}
 
@@ -122,7 +123,7 @@ std::ostream& operator << (std::ostream &out, const Sala &S) {
     return out;
 }
 
-Sala_Pool::Sala_Pool() = default;
+Sala_Pool::Sala_Pool() : sali(MAX_SALI) {}
 
 Sala& Sala_Pool::get_sala() {
     for (auto &s : sali) {

@@ -97,7 +97,7 @@ int main() {
             std::cout << "Numărul mesei la care doriți să adăugați angajatul: ";
             std::cin >> idMasa;
             std::cout << "Numele angajatului este: ";
-            std::getline(std::cin, nume);
+            std::cin >> nume;
             int salariu;
             std::cout << "Salariul angajatului este: ";
             std::cin >> salariu;
