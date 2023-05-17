@@ -71,55 +71,35 @@ void Sala::add_invitat(const size_t posMasa, std::shared_ptr<Invitat> I) {
     if (posMasa >= mese.size()) {
         throw Eroare_Masa("Masa nu exista.");
     }
-    try {
-        mese[posMasa] -> add_invitat(I);
-    } catch(Eroare_Update_Masa& err) {
-        std::cout << err.what() << "\n";
-    }
+    mese[posMasa] -> add_invitat(I);
 }
 
 void Sala::add_anagajat(const size_t posMasa, std::shared_ptr<Angajat> A) {
     if (posMasa >= mese.size()) {
         throw Eroare_Masa("Masa nu exista.");
     }
-    try {
-        mese[posMasa] -> add_angajat(A);
-    } catch(Eroare_Update_Masa &err) {
-        std::cout << err.what() << "\n";
-    }
+    mese[posMasa] -> add_angajat(A);
 }
 
 void Sala::rem_angajati(const size_t posMasa, const size_t posAng) {
     if (posMasa >= mese.size()) {
         throw Eroare_Masa("Masa nu exista.");
     }
-    try {
-        mese[posMasa] -> remove_angajat(posAng);
-    } catch(Eroare_Update_Masa &err) {
-        std::cout << err.what() << "\n";
-    }
+    mese[posMasa] -> remove_angajat(posAng);
 }
 
 void Sala::rem_invitat(const size_t posMasa, const size_t posInv) {
     if (posMasa >= mese.size()) {
         throw Eroare_Masa("Masa nu exista.");
     }
-    try {
-        mese[posMasa] -> remove_invitat(posInv);
-    } catch(Eroare_Update_Masa &err) {
-        std::cout << err.what() << "\n";
-    }
+    mese[posMasa] -> remove_invitat(posInv);
 }
 
 void Sala::modif_meniu(const size_t posMasa, const size_t posInv, const Meniu &men) {
     if (posMasa >= mese.size()) {
         throw Eroare_Masa("Masa nu există.");
     }
-    try {
-        mese[posMasa]->modif_menu(posInv, men);
-    } catch(Eroare_Update_Masa &err) {
-        std::cout << err.what() << "\n";
-    }
+    mese[posMasa]->modif_menu(posInv, men);
 }
 
 void Sala::add_personal() {

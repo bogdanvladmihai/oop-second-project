@@ -58,7 +58,7 @@ int main() {
             std::cin >> idSala;
             try {
                 manager.rem_sala(idSala);
-            } catch(Eroare_Sali &err) {
+            } catch(Eroare_Gestiune &err) {
                 std::cout << err.what() << "\n";
             }
         } else if (option == 3) {
@@ -73,7 +73,7 @@ int main() {
             std::cin >> pret_consumabile_masa;
             try {
                 manager.add_masa(idSala, numar_locuri, pret_consumabile_masa);
-            } catch(Eroare_Sali &err) {
+            } catch(Eroare_Gestiune &err) {
                 std::cout << err.what() << "\n";
             }
         } else if (option == 4) {
@@ -85,7 +85,7 @@ int main() {
             std::cin >> idMasa;
             try {
                 manager.rem_masa(idSala, idMasa);
-            } catch (Eroare_Sali &err) {
+            } catch (Eroare_Gestiune &err) {
                 std::cout << err.what() << "\n";
             }
         } else if (option == 5) {
@@ -104,7 +104,7 @@ int main() {
             std::shared_ptr<Angajat> A = std::make_shared<Angajat>(Angajat(nume, salariu));
             try {
                 manager.add_angajat(idSala, idMasa, A);
-            } catch(Eroare_Sali &err) {
+            } catch(Eroare_Gestiune &err) {
                 std::cout << err.what() << "\n";
             }
         } else if (option == 6) {
@@ -119,7 +119,7 @@ int main() {
             std::cin >> idAng;
             try {
                 manager.rem_angajat(idSala, idMasa, idAng);
-            } catch(Eroare_Sali &err) {
+            } catch(Eroare_Gestiune &err) {
                 std::cout << err.what() << "\n";
             }
         } else if (option == 7) {
@@ -178,7 +178,7 @@ int main() {
             std::shared_ptr<Invitat> I = std::make_shared<Invitat>(Invitat(men, nume));
             try {
                 manager.add_invitat(idSala, idMasa, I);
-            } catch(Eroare_Sali &err) {
+            } catch(Eroare_Gestiune &err) {
                 std::cout << err.what() << "\n";
             }
         } else if (option == 8) {
@@ -193,7 +193,7 @@ int main() {
             std::cin >> idInv;
             try {
                 manager.rem_invitat(idSala, idMasa, idInv);
-            } catch(Eroare_Sali &err) {
+            } catch(Eroare_Gestiune &err) {
                 std::cout << err.what() << "\n";
             }
         } else if (option == 9) {
@@ -222,7 +222,7 @@ int main() {
                     men.adaugaFel(Fel_Factory::desert_Vegan());
                     men.adaugaFel(Fel_Factory::fel_2_Vegan());
                     men.adaugaFel(Fel_Factory::aperitiv_Vegan());
-                } catch(Eroare_Meniu &err) {
+                } catch(Eroare_Gestiune &err) {
                     std::cout << err.what() << "\n";
                 }
             } else if (opt == 0) {
@@ -232,7 +232,7 @@ int main() {
                     men.adaugaFel(Fel_Factory::fel_2_Normal());
                     men.adaugaFel(Fel_Factory::fel_3_Normal());
                     men.adaugaFel(Fel_Factory::desert_Normal());
-                } catch(Eroare_Meniu &err) {
+                } catch(Eroare_Gestiune &err) {
                     std::cout << err.what() << "\n";
                 }
             } else if (opt == 2) {
@@ -242,13 +242,13 @@ int main() {
                     men.adaugaFel(Fel_Factory::fel_2_Vegetarian());
                     men.adaugaFel(Fel_Factory::fel_3_Vegetarian());
                     men.adaugaFel(Fel_Factory::desert_Vegetarian());
-                } catch(Eroare_Meniu &err) {
+                } catch(Eroare_Gestiune &err) {
                     std::cout << err.what() << "\n";
                 }
             }
             try {
                 manager.modifica_meniu(idSala, idMasa, idInv, men);
-            } catch(Eroare_Sali &err) {
+            } catch(Eroare_Gestiune &err) {
                 std::cout << err.what() << "\n";
             }
         } else if (option == 10) {
@@ -288,7 +288,7 @@ int main() {
                     std::cout << "Numărul sălii pe care doriți să o completați cu personal este: ";
                     std::cin >> idSala;
                     manager.add_personal(idSala);
-                } catch(Eroare_Sali &err) {
+                } catch(Eroare_Gestiune &err) {
                     std::cout << err.what() << "\n";
                 }
             }
@@ -335,7 +335,7 @@ int main() {
             std::cin >> idSala;
             try {
                 manager.goleste_sala(idSala);
-            } catch(Eroare_Sali &err) {
+            } catch(Eroare_Gestiune &err) {
                 std::cout << err.what() << "\n";
             }
         } else {
