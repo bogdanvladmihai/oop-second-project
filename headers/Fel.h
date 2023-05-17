@@ -50,6 +50,16 @@ public:
     std::shared_ptr<Fel> clone() const override;
 };
 
+class Fel_Copil : public Fel {
+private:
+    double pretDulciuri, pretFructe;
+public:
+    Fel_Copil(const std::string &nume_, const double pret_, const double pretDulciuri_, const double pretF_);
+    double pretProdus() const override;
+    virtual ~Fel_Copil() = default;
+    std::shared_ptr<Fel> clone() const override;
+};
+
 class Fel_Factory {
 public:
     static std::shared_ptr<Fel> aperitiv_Normal();

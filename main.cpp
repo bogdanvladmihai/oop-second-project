@@ -266,7 +266,7 @@ int main() {
             std::cout << "Prețurile pentru produse sunt: (trei valori) ";
             std::cin >> P1 >> P2 >> P3;
             try {
-                manager.add_fel(idSala, idMasa, idInv, std::make_shared<Fel_Normal>(Fel_Normal(numeFel, P1, P2, P3)));
+                manager.add_fel(idSala, idMasa, idInv, std::make_shared<Fel_Copil>(Fel_Copil(numeFel, P1, P2, P3)));
             } catch (Eroare_Gestiune &err) {
                 std::cout << err.what() << "\n";
             }

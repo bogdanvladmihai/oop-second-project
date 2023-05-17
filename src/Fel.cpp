@@ -41,6 +41,16 @@ std::shared_ptr<Fel> Fel_Vegan::clone() const {
     return std::make_shared<Fel_Vegan>(*this);
 }
 
+Fel_Copil::Fel_Copil(const std::string &nume_, const double pret_, const double pretDulciuri_, const double pretF_) :
+                    Fel(nume_, pret_), pretDulciuri(pretDulciuri_), pretFructe(pretF_) {}
+
+double Fel_Copil::pretProdus() const {
+    return pret + pretDulciuri * 1.5 + pretFructe * 2;
+}
+std::shared_ptr<Fel> Fel_Copil::clone() const {
+    return std::make_shared<Fel_Copil>(*this);
+}
+
 std::shared_ptr<Fel> Fel_Factory::aperitiv_Normal() {
     return std::make_shared<Fel_Normal>(Fel_Normal("Chiftele, salată, mezeluri", 8.7, 12.5, 9.4));
 }
