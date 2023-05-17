@@ -31,7 +31,7 @@ public:
     void rem_invitat(const size_t posSala, const size_t posMasa, const size_t posInvitat);
     void add_personal(const size_t pos = INV);
     double get_cost() const;
-    void modif_salariu(const size_t posSala, const size_t posMasa, const size_t posAng, double newSal)ș
+    void modif_salariu(const size_t posSala, const size_t posMasa, const size_t posAng, double newSal);
 };
 
 
