@@ -6,6 +6,8 @@
 
 Angajat::Angajat(const std::string &nume_, int salariu_) : nume(nume_), salariu(salariu_) {}
 
+Angajat::Angajat(const Angajat &other) : nume(other.nume), salariu(other.salariu) {}
+
 int Angajat::getSalariu() const {
     return salariu;
 }

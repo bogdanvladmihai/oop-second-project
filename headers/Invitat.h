@@ -14,7 +14,9 @@ private:
     std::shared_ptr<Meniu> M;
 public:
     Invitat(const Meniu &M_, const std::string &nume_);
-    const std::string get_nume() const;
+    Invitat(const Invitat &other);
+    Invitat& operator=(const Invitat &other);
+    void modif_meniu(const Meniu &men);
     double get_cost() const;
     friend std::ostream& operator << (std::ostream&, const Invitat &I);
 };

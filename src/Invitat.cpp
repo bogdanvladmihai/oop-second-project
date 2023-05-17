@@ -7,8 +7,10 @@
 
 Invitat::Invitat(const Meniu &M_, const std::string &nume_) : nume(nume_), M(std::make_shared<Meniu>(M_)) {}
 
-const std::string Invitat::get_nume() const {
-    return nume;
+Invitat::Invitat(const Invitat &other) : nume(other.nume), M(std::make_shared<Meniu>(*other.M)) {}
+
+void Invitat::modif_meniu(const Meniu &men) {
+    M = std::make_shared<Meniu>(men);
 }
 
 double Invitat::get_cost() const {

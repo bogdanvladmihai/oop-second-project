@@ -8,6 +8,23 @@ const size_t Sala::MAX_NUMAR_MESE = 5;
 
 Sala::Sala() : used(false) {}
 
+Sala::Sala(const Sala &other) : used(other.used) {
+    for (auto m : other.mese) {
+        mese.push_back(std::make_shared<Masa>(*m));
+    }
+}
+
+Sala& Sala::operator=(const Sala &other) {
+    if (used != other.used || mese != other.mese) {
+        used = other.used;
+        mese.clear();
+        for (auto e : other.mese) {
+            mese.push_back(std::make_shared<Masa>(*e));
+        }
+    }
+    return *this;
+}
+
 bool Sala::isUsed() const {
     return used;
 }
@@ -94,6 +111,17 @@ void Sala::rem_invitat(const size_t posMasa, const size_t posInv) {
     }
 }
 
+void Sala::modif_meniu(const size_t posMasa, const size_t posInv, const Meniu &men) {
+    if (posMasa >= mese.size()) {
+        throw Eroare_Masa("Masa nu există.");
+    }
+    try {
+        mese[posMasa]->modif_menu(posInv, men);
+    } catch(Eroare_Update_Masa &err) {
+        std::cout << err.what() << "\n";
+    }
+}
+
 void Sala::add_personal() {
     for (auto &M : mese) {
         M -> add_personal();
@@ -124,4 +152,11 @@ Sala& Sala_Pool::get_sala() {
         }
     }
     throw Eroare_Sali("Prea multi sali folosite.");
+}
+
+void Sala::modif_salariu(size_t posMasa, size_t posAng, double newSal) {
+    if (posMasa >= mese.size()) {
+        throw Eroare_Masa("Masa nu există");
+    }
+    mese[posMasa].modif_salariu(posAng, newSal);
 }

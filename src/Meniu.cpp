@@ -15,6 +15,16 @@ Meniu::Meniu(const Meniu &other) {
     }
 }
 
+Meniu& Meniu::operator=(const Meniu &other) {
+    if (feluri_mancare != other.feluri_mancare) {
+        feluri_mancare.clear();
+        for (auto fel : other.feluri_mancare) {
+            feluri_mancare.push_back(fel -> clone());
+        }
+    }
+    return *this;
+}
+
 void Meniu::clear() {
     feluri_mancare.clear();
 }
@@ -47,25 +57,16 @@ std::ostream& operator << (std::ostream &out, const Meniu &M) {
         return out;
     }
 
-    int cnt_vegan = 0, cnt_normal = 0, cnt_vegetarian = 0;
+    bool is_normal = false;
     for (auto &men : M.feluri_mancare) {
         if (std::dynamic_pointer_cast<Fel_Normal>(men)) {
-            cnt_normal++;
-        } else if (std::dynamic_pointer_cast<Fel_Vegan>(men)) {
-            cnt_vegan++;
-        } else {
-            cnt_vegetarian++;
+            is_normal = true;
         }
     }
-    out << "Meniul are ";
-    if (cnt_normal > 0) {
-        out << cnt_normal << " elemente de tip mancare normala; ";
-    }
-    if (cnt_vegan) {
-        out << cnt_vegan << " elemente de tip mancare vegana;";
-    }
-    if (cnt_vegetarian) {
-        out << cnt_vegetarian << " elemente de tip mancare vegetariana;";
+    if (is_normal) {
+        out << "Meniu este normal!\n";
+    } else {
+        out << "Meniul este modificat (nu este normal)!";
     }
     out << "\n";
     return out;

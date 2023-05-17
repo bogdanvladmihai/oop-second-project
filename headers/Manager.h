@@ -20,6 +20,8 @@ public:
     static Manager& get_manager();
     friend std::ostream& operator << (std::ostream &out, const Manager &M);
     void add_sala();
+    void goleste_sala(const size_t posSala);
+    void modifica_meniu(const size_t posSala, const size_t posMasa, const size_t posInv, const Meniu &men);
     void rem_sala(const size_t pos);
     void add_masa(const size_t posSala, const int numar_locuri, const int pret_consumabile_masa);
     void rem_masa(const size_t posSala, const size_t posMasa);
@@ -29,6 +31,7 @@ public:
     void rem_invitat(const size_t posSala, const size_t posMasa, const size_t posInvitat);
     void add_personal(const size_t pos = INV);
     double get_cost() const;
+    void modif_salariu(const size_t posSala, const size_t posMasa, const size_t posAng, double newSal)ș
 };
 
 

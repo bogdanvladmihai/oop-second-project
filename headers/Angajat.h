@@ -15,6 +15,7 @@ private:
     int salariu;
 public:
     Angajat(const std::string &nume_, int salariu_);
+    Angajat(const Angajat &other);
     int getSalariu() const;
     void setSalariu(const int salariu_);
     const std::string get_nume() const;
@@ -22,7 +23,7 @@ public:
     friend std::ostream& operator << (std::ostream &out, const Angajat &A);
 };
 
-class Angajat_Factory : public Angajat {
+class Angajat_Factory {
 public:
     static std::shared_ptr<Angajat> Barman();
     static std::shared_ptr<Angajat> Ospatar();

@@ -15,6 +15,36 @@ Masa::Masa(const int numar_locuri_, const int pret_consumabile_masa_) : numar_lo
     }
 }
 
+Masa::Masa(const Masa &other) : numar_locuri(other.numar_locuri), pret_consumabile_masa(other.pret_consumabile_masa) {
+    for (auto e : other.angajati) {
+        angajati.push_back(std::make_shared<Angajat>(*e));
+    }
+    for (auto e : other.invitati) {
+        invitati.push_back(std::make_shared<Invitat>(*e));
+    }
+}
+
+Masa& Masa::operator=(const Masa &other) {
+    if (*this != other) {
+        numar_locuri = other.numar_locuri;
+        pret_consumabile_masa = other.pret_consumabile_masa;
+        invitati.clear();
+        angajati.clear();
+        for (auto e : angajati) {
+            angajati.push_back(std::make_shared<Angajat>(*e));
+        }
+        for (auto e : invitati) {
+            invitati.push_back(std::make_shared<Invitat>(*e));
+        }
+    }
+    return *this;
+}
+
+bool Masa::operator!=(const Masa &other) const {
+    return numar_locuri == other.numar_locuri && pret_consumabile_masa == other.pret_consumabile_masa &&
+            invitati == other.invitati && angajati == other.angajati;
+}
+
 // Voi vrea sa tin EXACT angajat (nu o copie a sa). La fel al invitat.
 void Masa::add_angajat(const std::shared_ptr<Angajat> angajat) {
     angajati.push_back(angajat);
@@ -68,6 +98,13 @@ void Masa::add_personal() {
     }
 }
 
+void Masa::modif_menu(const size_t idInv, const Meniu &men) {
+    if (idInv >= invitati.size()) {
+        throw Eroare_Update_Masa("Invitatul nu există.");
+    }
+    invitati[idInv] -> modif_meniu(men);
+}
+
 std::ostream& operator << (std::ostream &out, const Masa &M) {
     out << "Masa are " << M.numar_locuri << " locuri.\n";
     if (M.invitati.empty()) {
@@ -87,4 +124,11 @@ std::ostream& operator << (std::ostream &out, const Masa &M) {
         }
     }
     return out;
+}
+
+void Masa::modif_sal(const size_t posAng, double newSal) {
+    if (posAng >= angajati.size()) {
+        throw Eroare_Masa("Angajatul nu există.");
+    }
+    angajati[posAng]->setSalariu(newSal);
 }

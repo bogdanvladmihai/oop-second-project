@@ -17,6 +17,8 @@ private:
     friend class Sala_Builder;
 public:
     Sala();
+    Sala(const Sala &other);
+    Sala& operator=(const Sala &other);
     bool isUsed() const;
     void use();
     void goleste_sala();
@@ -27,9 +29,11 @@ public:
     void add_anagajat(const size_t posMasa, std::shared_ptr<Angajat> A);
     void rem_invitat(const size_t posMasa, const size_t posInv);
     void rem_angajati(const size_t posMasa, const size_t posAng);
+    void modif_meniu(const size_t posMasa, const size_t posInv, const Meniu &men);
     void add_personal();
     friend std::ostream& operator << (std::ostream &out, const Sala &S);
     double get_pret() const;
+    void modif_salariu(size_t posMasa, size_t posAng, double newSal);
 };
 
 class Sala_Pool {

@@ -7,7 +7,12 @@
 
 #include <stdexcept>
 
-class Eroare_Masa : public std::logic_error {
+class Eroare_Gestiune : public std::logic_error {
+public:
+    explicit Eroare_Gestiune(const std::string &err) noexcept;
+};
+
+class Eroare_Masa : public Eroare_Gestiune {
 public:
     explicit Eroare_Masa(const std::string &err) noexcept;
 };
@@ -17,7 +22,7 @@ public:
     explicit Eroare_Update_Masa(const std::string &err) noexcept;
 };
 
-class Eroare_Sali : public std::logic_error {
+class Eroare_Sali : public Eroare_Gestiune {
 public:
     explicit Eroare_Sali(const std::string &err) noexcept;
  };
@@ -32,7 +37,7 @@ public:
     explicit Eroare_Update_Sala(const std::string &err) noexcept;
 };
 
-class Eroare_Meniu : public std::logic_error {
+class Eroare_Meniu : public Eroare_Gestiune {
 public:
     explicit Eroare_Meniu(const std::string &err) noexcept;
 };

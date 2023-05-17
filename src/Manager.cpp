@@ -34,6 +34,28 @@ void Manager::add_sala() {
     }
 }
 
+void Manager::goleste_sala(const size_t posSala) {
+    if (posSala >= sali.size()) {
+        throw Eroare_Sali("Sala nu există.");
+    }
+    try {
+        sali[posSala].goleste_sala();
+    } catch(Eroare_Sali &err) {
+        std::cout << err.what() << "\n";
+    }
+}
+
+void Manager::modifica_meniu(const size_t posSala, const size_t posMasa, const size_t posInv, const Meniu &men) {
+    if (posSala >= sali.size()) {
+        throw Eroare_Sali("Sala nu există.");
+    }
+    try {
+        sali[posSala].modif_meniu(posMasa, posInv, men);
+    } catch(Eroare_Masa &err) {
+        std::cout << err.what() << "\n";
+    }
+}
+
 void Manager::rem_sala(const size_t pos) {
     if (pos < sali.size()) {
         try {
@@ -134,6 +156,13 @@ void Manager::add_personal(const size_t posSala) {
         throw Eroare_Sali("Sala nu exista");
     }
     sali[posSala].add_personal();
+}
+
+void Manager::modif_salariu(const size_t posSala, const size_t posMasa, const size_t posAng, double newSal) {
+    if (posSala >= sali.size()) {
+        throw Eroare_Sali("Sala nu există");
+    }
+    sali[posSala].modif_salariu(posMasa, posAng, newSal);
 }
 
 double Manager::get_cost() const {
