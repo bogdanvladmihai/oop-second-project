@@ -271,7 +271,6 @@ int main() {
                 std::cout << err.what() << "\n";
             }
         } else if (option == 11) {
-            size_t idSala;
             std::cout << "Doriți să completați cu personal la toate sălile? (D/N): ";
             char C;
             do {
@@ -285,6 +284,7 @@ int main() {
                 manager.add_personal();
             } else {
                 try {
+                    size_t idSala;
                     std::cout << "Numărul sălii pe care doriți să o completați cu personal este: ";
                     std::cin >> idSala;
                     manager.add_personal(idSala);
