@@ -158,5 +158,5 @@ void Sala::modif_salariu(size_t posMasa, size_t posAng, double newSal) {
     if (posMasa >= mese.size()) {
         throw Eroare_Masa("Masa nu există");
     }
-    mese[posMasa].modif_salariu(posAng, newSal);
+    mese[posMasa]->modif_sal(posAng, newSal);
 }
