@@ -159,7 +159,7 @@ void Masa::readData(std::ifstream &in) {
     for (int i = 0; i < nrInv; i++) {
         std::string nume;
         in >> nume;
-        std::shared_ptr<Meniu> menu;
+        auto menu = std::make_shared<Meniu>(Meniu());
         menu -> readData(in);
 
         invitati.push_back(std::make_shared<Invitat>(*menu, nume));
