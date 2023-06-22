@@ -5,7 +5,7 @@
 #include "../headers/Manager.h"
 
 const size_t Manager::INV = 15;
-const std::string fileName = "../data.txt";
+const std::string fileName = "data.txt";
 
 Manager& Manager::get_manager() {
     static Manager M;
