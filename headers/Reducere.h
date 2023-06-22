@@ -13,7 +13,7 @@ class Reducere {
 private:
     T value;
 public:
-    Reducere(const T &value_) : value(value_) {}
+    explicit Reducere(const T &value_) : value(value_) {}
     friend std::ostream& operator << (std::ostream& out, const Reducere<T> &ob) {
         out << "Reducerea aplicată este: " << ob.value << "\n";
         return out;
