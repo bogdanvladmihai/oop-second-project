@@ -24,7 +24,7 @@
 ## Tema 3
 
 #### Cerințe
-- [X] 2 șabloane de proiectare (design patterns, da, facroty (pentru felurile de mâncare și la angajați), singleton în Manager și bbject pool pentru săli)
+- [X] 2 șabloane de proiectare (design patterns, da, factory (pentru felurile de mâncare și la angajați), singleton în Manager și object pool pentru săli)
 - [ ] o funcție șablon (template) cu sens; minim 2 instanțieri
 - [ ] o clasă șablon cu sens; minim 2 instanțieri
 <!-- - [ ] o specializare pe funcție/clasă șablon -->

@@ -1,5 +1,6 @@
 #include "headers/Manager.h"
 #include <rlutil.h>
+#include "headers/Reducere.h"
 
 void printMenu() {
     rlutil::cls();
@@ -33,7 +34,10 @@ bool checkOption(const std::string &S) {
     return S[0] == '1' && S[1] >= '0' && S[1] <= '5';
 }
 
+
 int main() {
+    srand(time(NULL));
+
     auto &manager = Manager::get_manager();
     manager.read();
 
@@ -232,6 +236,16 @@ int main() {
                 }
             } else if (option == 12) {
                 std::cout << "Costul total pentru organiarea evenimentului este " << manager.get_cost() << "\n";
+                int tp = rand() % 4;
+                if (tp == 0) {
+                    std::cout << Reducere<int>(10).combine<int>(Reducere<int>(23)) << "\n";
+                } else if (tp == 1) {
+                    std::cout << Reducere<int>(10).combine<std::string>(Reducere<std::string>("Sala gratis ")) << "\n";
+                } else if (tp == 2) {
+                    std::cout << Reducere<std::string>("Sala gratis ").combine<int>(Reducere<int>(10)) << "\n";
+                } else {
+                    std::cout << Reducere<std::string>("Sală gratuită ").combine<std::string>(Reducere<std::string>("Personal din partea localului  ")) << "\n";
+                }
             } else if (option == 13) {
                 std::cout << manager << "\n";
                 size_t idSala, idMasa, idInv;
