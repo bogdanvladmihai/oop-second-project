@@ -141,11 +141,13 @@ double Manager::get_cost() const {
 
 void Manager::read() {
     std::ifstream in(fileName);
-    int nrSali;
-    in >> nrSali;
-    for (int i = 0; i < nrSali; i++) {
-        sali.push_back(Sala());
-        sali.back().readData(in);
+    if (in) {
+        int nrSali;
+        in >> nrSali;
+        for (int i = 0; i < nrSali; i++) {
+            sali.push_back(Sala());
+            sali.back().readData(in);
+        }
     }
     in.close();
 }
