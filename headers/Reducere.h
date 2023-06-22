@@ -24,7 +24,7 @@ public:
     }
 
     template<class U>
-    Reducere<T> combine(Reducere<U> other) {
+    Reducere<T> combine(Reducere<U>) {
         return *this;
     }
 };

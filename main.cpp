@@ -244,7 +244,7 @@ int main() {
                 } else if (tp == 2) {
                     std::cout << Reducere<std::string>("Sala gratis ").combine<int>(Reducere<int>(10)) << "\n";
                 } else {
-                    std::cout << Reducere<std::string>("Sală gratuită ").combine<std::string>(Reducere<std::string>("Personal din partea localului  ")) << "\n";
+                    std::cout << Reducere<std::string>("Sală gratuită ").combine<std::string>(Reducere<std::string>("Personal din partea localului  "));
                 }
             } else if (option == 13) {
                 std::cout << manager << "\n";
