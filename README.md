@@ -25,10 +25,10 @@
 
 #### Cerințe
 - [X] 2 șabloane de proiectare (design patterns, da, factory (pentru felurile de mâncare și la angajați), singleton în Manager și object pool pentru săli)
-- [ ] o funcție șablon (template) cu sens; minim 2 instanțieri
-- [ ] o clasă șablon cu sens; minim 2 instanțieri
-<!-- - [ ] o specializare pe funcție/clasă șablon -->
-- [ ] tag de `git`: de exemplu `v0.3` sau `v1.0`
+- [X] o funcție șablon (template) cu sens; minim 2 instanțieri
+- [X] o clasă șablon cu sens; minim 2 instanțieri
+<!-- - [X] o specializare pe funcție/clasă șablon -->
+- [X] tag de `git`: de exemplu `v0.3` sau `v1.0`
 
 ## Resurse
 
