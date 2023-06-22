@@ -7,6 +7,7 @@
 
 #include "Sala.h"
 #include "Erori.h"
+#include <fstream>
 
 class Manager {
 private:
@@ -34,6 +35,8 @@ public:
     void modif_salariu(const size_t posSala, const size_t posMasa, const size_t posAng, double newSal);
     void add_fel(const size_t idSala, const size_t idMasa, const size_t idInv, std::shared_ptr<Fel> F);
     void del_fel(const size_t idSala, const size_t idMasa, const size_t idInv, const size_t idPos);
+    void update();
+    void read();
 };
 
 

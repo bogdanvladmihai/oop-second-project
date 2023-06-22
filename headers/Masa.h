@@ -8,6 +8,7 @@
 #include <vector>
 #include "Angajat.h"
 #include "Invitat.h"
+#include <fstream>
 
 class Masa {
 private:
@@ -21,7 +22,6 @@ public:
     Masa& operator=(const Masa &other);
     bool operator != (const Masa &other) const;
     void add_angajat(std::shared_ptr<Angajat> angajat);
-    void add_angajat(const Angajat &A);
     void remove_angajat(const size_t pos);
     void add_invitat(std::shared_ptr<Invitat> invitat);
     void remove_invitat(const size_t pos);
@@ -32,6 +32,8 @@ public:
     void modif_sal(const size_t posAng, double newSal);
     void add_fel(const size_t inInv, std::shared_ptr<Fel> F);
     void del_fel(const size_t idInv, const size_t idPos);
+    void readData(std::ifstream &in);
+    void writeData(std::ofstream &out);
 };
 
 

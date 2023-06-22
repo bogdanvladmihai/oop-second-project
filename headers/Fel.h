@@ -7,17 +7,18 @@
 
 #include <string>
 #include <memory>
+#include <fstream>
 
 class Fel {
-private:
-    std::string nume;
 protected:
+    std::string nume;
     double pret;
 public:
     Fel(const std::string &nume_, const double pret_);
     virtual double pretProdus() const = 0;
     virtual ~Fel() = default;
     virtual std::shared_ptr<Fel> clone() const = 0;
+    virtual void writeData(std::ofstream &out) = 0;
 };
 
 class Fel_Normal : public Fel {
@@ -28,6 +29,7 @@ public:
     double pretProdus() const override;
     virtual ~Fel_Normal() = default;
     std::shared_ptr<Fel> clone() const override;
+    void writeData(std::ofstream &out) override;
 };
 
 class Fel_Vegetarian : public Fel {
@@ -38,6 +40,7 @@ public:
     double pretProdus() const override;
     virtual ~Fel_Vegetarian() = default;
     std::shared_ptr<Fel> clone() const override;
+    void writeData(std::ofstream &out) override;
 };
 
 class Fel_Vegan : public Fel {
@@ -48,6 +51,7 @@ public:
     double pretProdus() const override;
     virtual ~Fel_Vegan() = default;
     std::shared_ptr<Fel> clone() const override;
+    void writeData(std::ofstream &out) override;
 };
 
 class Fel_Copil : public Fel {
@@ -58,6 +62,7 @@ public:
     double pretProdus() const override;
     virtual ~Fel_Copil() = default;
     std::shared_ptr<Fel> clone() const override;
+    void writeData(std::ofstream &out) override;
 };
 
 class Fel_Factory {

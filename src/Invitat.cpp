@@ -29,3 +29,8 @@ void Invitat::add_fel(std::shared_ptr<Fel> F) {
 void Invitat::del_fel(const size_t pos) {
     M ->stergeFel(pos);
 }
+
+void Invitat::writeData(std::ofstream &out) {
+    out << nume << "\n";
+    M -> writeData(out);
+}

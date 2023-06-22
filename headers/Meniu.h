@@ -9,6 +9,7 @@
 #include <vector>
 #include <utility>
 #include "Fel.h"
+#include <fstream>
 
 class Meniu {
 private:
@@ -23,6 +24,8 @@ public:
     void stergeFel(const size_t pos);
     double pretMeniu() const;
     friend std::ostream& operator << (std::ostream &out, const Meniu &M);
+    void readData(std::ifstream &in);
+    void writeData(std::ofstream &out);
 };
 
 #endif //OOP_MENIU_H

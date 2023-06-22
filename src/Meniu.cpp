@@ -71,3 +71,32 @@ std::ostream& operator << (std::ostream &out, const Meniu &M) {
     out << "\n";
     return out;
 }
+
+void Meniu::readData(std::ifstream &in) {
+    int feluri;
+    in >> feluri;
+    for (int i = 0; i < feluri; i++) {
+        int tp;
+        in >> tp;
+
+        std::string nume;
+        double a, b, c;
+        in >> nume >> a >> b >> c;
+        if (tp == 0) {
+            feluri_mancare.push_back(std::make_shared<Fel_Normal>(Fel_Normal(nume, a, b, c)));
+        } else if (tp == 1) {
+            feluri_mancare.push_back(std::make_shared<Fel_Vegan>(Fel_Vegan(nume, a, b, c)));
+        } else if (tp == 2) {
+            feluri_mancare.push_back(std::make_shared<Fel_Vegetarian>(Fel_Vegetarian(nume, a, b, c)));
+        } else {
+            feluri_mancare.push_back(std::make_shared<Fel_Copil>(Fel_Copil(nume, a, b, c)));
+        }
+    }
+}
+
+void Meniu::writeData(std::ofstream &out) {
+    out << feluri_mancare.size() << "\n";
+    for (auto &f : feluri_mancare) {
+        f -> writeData(out);
+    }
+}

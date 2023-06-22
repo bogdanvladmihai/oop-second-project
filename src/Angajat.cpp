@@ -25,6 +25,10 @@ std::ostream& operator << (std::ostream &out, const Angajat &A) {
     return out;
 }
 
+void Angajat::writeData(std::ofstream &out) {
+    out << nume << " " << salariu << "\n";
+}
+
 std::shared_ptr<Angajat> Angajat_Factory::Barman() {
     return std::make_shared<Angajat>(Angajat("Sergiu Lazar", 1800));
 }

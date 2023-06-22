@@ -8,6 +8,7 @@
 #include <vector>
 #include "Erori.h"
 #include "Masa.h"
+#include <fstream>
 
 class Sala {
 private:
@@ -36,6 +37,8 @@ public:
     void modif_salariu(const size_t posMasa, const size_t posAng, double newSal);
     void add_fel(const size_t idMasa, const size_t idInv, std::shared_ptr<Fel> F);
     void del_fel(const size_t idMasa, const size_t idInv, const size_t idPos);
+    void readData(std::ifstream &in);
+    void writeData(std::ofstream &out);
 };
 
 class Sala_Pool {

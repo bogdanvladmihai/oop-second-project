@@ -5,6 +5,7 @@
 #include "../headers/Manager.h"
 
 const size_t Manager::INV = 15;
+const std::string fileName = "../data.txt";
 
 Manager& Manager::get_manager() {
     static Manager M;
@@ -26,43 +27,28 @@ std::ostream& operator << (std::ostream &out, const Manager &M) {
 }
 
 void Manager::add_sala() {
-    try {
-        Sala &S = Pool.get_sala();
-        sali.push_back(S);
-    } catch(Eroare_Sali &err) {
-        std::cout << err.what() << "\n";
-    }
+    Sala &S = Pool.get_sala();
+    sali.push_back(S);
 }
 
 void Manager::goleste_sala(const size_t posSala) {
     if (posSala >= sali.size()) {
         throw Eroare_Sali("Sala nu există.");
     }
-    try {
-        sali[posSala].goleste_sala();
-    } catch(Eroare_Sali &err) {
-        std::cout << err.what() << "\n";
-    }
+    sali[posSala].goleste_sala();
 }
 
 void Manager::modifica_meniu(const size_t posSala, const size_t posMasa, const size_t posInv, const Meniu &men) {
     if (posSala >= sali.size()) {
         throw Eroare_Sali("Sala nu există.");
     }
-    try {
-        sali[posSala].modif_meniu(posMasa, posInv, men);
-    } catch(Eroare_Masa &err) {
-        std::cout << err.what() << "\n";
-    }
+    sali[posSala].modif_meniu(posMasa, posInv, men);
 }
 
 void Manager::rem_sala(const size_t pos) {
     if (pos < sali.size()) {
-        try {
-            sali[pos].stopUsing();
-        } catch(Eroare_Inchidere_Sala &err) {
-            std::cout << err.what() << "\n";
-        }
+        sali[pos].stopUsing();
+        return;
     }
     throw Eroare_Sali("Sala nu exista.");
 }
@@ -71,77 +57,43 @@ void Manager::add_masa(const size_t posSala, const int numar_locuri, int pret_co
     if (posSala >= sali.size()) {
         throw Eroare_Sali("Sala nu exista.");
     }
-    try {
-        std::shared_ptr<Masa> M = std::make_shared<Masa>(Masa(numar_locuri, pret_consumabile_masa));
-        sali[posSala].addMasa(M);
-    } catch(Eroare_Masa &err) {
-        std::cout << err.what() << "\n";
-    } catch(Eroare_Sali &err) {
-        std::cout << err.what() << "\n";
-    }
+    std::shared_ptr<Masa> M = std::make_shared<Masa>(Masa(numar_locuri, pret_consumabile_masa));
+    sali[posSala].addMasa(M);
 }
 
 void Manager::rem_masa(const size_t posSala, const size_t posMasa) {
     if (posSala >= sali.size()) {
         throw Eroare_Sali("Sala nu exista.");
     }
-    try {
-        sali[posSala].removeMasa(posMasa);
-    } catch(Eroare_Update_Sala &err) {
-        std::cout << err.what() << "\n";
-    }
+    sali[posSala].removeMasa(posMasa);
 }
 
 void Manager::add_angajat(const size_t posSala, const size_t posMasa, std::shared_ptr<Angajat> A) {
     if (posSala >= sali.size()) {
         throw Eroare_Sali("Sala nu exista.");
     }
-    try {
-        sali[posSala].add_anagajat(posMasa, A);
-    } catch(Eroare_Update_Masa &err) {
-        std::cout << err.what() << "\n";
-    } catch(Eroare_Masa &err) {
-        std::cout << err.what() << "\n";
-    }
+    sali[posSala].add_anagajat(posMasa, A);
 }
 
 void Manager::add_invitat(const size_t posSala, const size_t posMasa, std::shared_ptr<Invitat> I) {
     if (posSala >= sali.size()) {
         throw Eroare_Sali("Sala nu exista.");
     }
-    try {
-        sali[posSala].add_invitat(posMasa, I);
-    } catch(Eroare_Update_Masa &err) {
-        std::cout << err.what() << "\n";
-    } catch(Eroare_Masa &err) {
-        std::cout << err.what() << "\n";
-    }
+    sali[posSala].add_invitat(posMasa, I);
 }
 
 void Manager::rem_angajat(const size_t posSala, const size_t posMasa, const size_t posAngajat) {
     if (posSala >= sali.size()) {
         throw Eroare_Sali("Sala nu exista.");
     }
-    try {
-        sali[posSala].rem_angajati(posMasa, posAngajat);
-    } catch(Eroare_Update_Masa &err) {
-        std::cout << err.what() << "\n";
-    } catch(Eroare_Masa &err) {
-        std::cout << err.what() << "\n";
-    }
+    sali[posSala].rem_angajati(posMasa, posAngajat);
 }
 
 void Manager::rem_invitat(const size_t posSala, const size_t posMasa, const size_t posInvitat) {
     if (posSala >= sali.size()) {
         throw Eroare_Sali("Sala nu exista.");
     }
-    try {
-        sali[posSala].rem_invitat(posMasa, posInvitat);
-    } catch(Eroare_Update_Masa &err) {
-        std::cout << err.what() << "\n";
-    } catch(Eroare_Masa &err) {
-        std::cout << err.what() << "\n";
-    }
+    sali[posSala].rem_invitat(posMasa, posInvitat);
 }
 
 void Manager::add_personal(const size_t posSala) {
@@ -185,4 +137,26 @@ double Manager::get_cost() const {
         answer += S.get_pret();
     }
     return answer;
+}
+
+void Manager::read() {
+    std::ifstream in(fileName);
+    int nrSali;
+    in >> nrSali;
+    for (int i = 0; i < nrSali; i++) {
+        sali.push_back(Sala());
+        sali.back().readData(in);
+    }
+    in.close();
+}
+
+void Manager::update() {
+    std::ofstream out(fileName);
+
+    out << sali.size() << "\n";
+    for (auto &e : sali) {
+        e.writeData(out);
+    }
+
+    out.close();
 }

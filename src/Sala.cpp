@@ -37,6 +37,7 @@ void Sala::use() {
 void Sala::stopUsing() {
     if (mese.empty()) {
         used = false;
+        return;
     }
     throw Eroare_Inchidere_Sala("Nu se poate inchide o sala care are mese asociate!");
 }
@@ -50,6 +51,7 @@ void Sala::addMasa(std::shared_ptr<Masa> masa) {
         throw Eroare_Update_Sala(mese.size() == MAX_NUMAR_MESE ? "Numar maxim de mese atins in sala." :
                                  "Masa exista deja in sala.");
     }
+    used = true;
     mese.push_back(masa);
 }
 
@@ -117,7 +119,7 @@ std::ostream& operator << (std::ostream &out, const Sala &S) {
 
     out << "Sala are " << S.mese.size() << " mese alocate.\n";
     for (auto &M : S.mese) {
-        out << M;
+        out << *M;
     }
     out << "\n";
     return out;
@@ -154,4 +156,24 @@ void Sala::del_fel(const size_t idMasa, const size_t idInv, const size_t idPos) 
         throw Eroare_Masa("Masa nu există.");
     }
     mese[idMasa]->del_fel(idInv, idPos);
+}
+
+void Sala::readData(std::ifstream &in) {
+    int nrMese;
+    in >> nrMese;
+    for (int i = 0; i < nrMese; i++) {
+        int nrLoc;
+        in >> nrLoc;
+        int pretCons;
+        in >> pretCons;
+        mese.push_back(std::make_shared<Masa>(Masa(nrLoc, pretCons)));
+        mese.back() -> readData(in);
+    }
+}
+
+void Sala::writeData(std::ofstream &out) {
+    out << mese.size() << "\n";
+    for (auto &m : mese) {
+        m -> writeData(out);
+    }
 }

@@ -78,10 +78,6 @@ double Masa::pret_masa() const {
     return answer;
 }
 
-void Masa::add_angajat(const Angajat &A) {
-    angajati.push_back(std::make_shared<Angajat>(A));
-}
-
 void Masa::add_personal() {
     int tmp = 0;
     while (invitati.size() / angajati.size() >= LIMIT_RAPORT) {
@@ -112,7 +108,7 @@ std::ostream& operator << (std::ostream &out, const Masa &M) {
     } else {
         out << "Masa are urmatorii invitati: \n";
         for (size_t i = 0; i < M.invitati.size(); i++) {
-            out << i << " " << M.invitati[i];
+            out << i << " " << *M.invitati[i];
         }
     }
     if (M.angajati.empty()) {
@@ -120,7 +116,7 @@ std::ostream& operator << (std::ostream &out, const Masa &M) {
     } else {
         out << "Masa are urmatorii angajati: \n";
         for (size_t i = 0; i < M.angajati.size(); i++) {
-            out << i << ": " << M.angajati[i];
+            out << i << ": " << *M.angajati[i];
         }
     }
     return out;
@@ -145,4 +141,40 @@ void Masa::del_fel(const size_t idInv, const size_t idPos) {
         throw Eroare_Masa("Invitatul nu există.");
     }
     invitati[idInv] ->del_fel(idPos);
+}
+
+void Masa::readData(std::ifstream &in) {
+    int nrAng;
+    in >> nrAng;
+    for (int i = 0; i < nrAng; i++) {
+        std::string nume;
+        in >> nume;
+        int sal;
+        in >> sal;
+        angajati.push_back(std::make_shared<Angajat>(Angajat(nume, sal)));
+    }
+
+    int nrInv;
+    in >> nrInv;
+    for (int i = 0; i < nrInv; i++) {
+        std::string nume;
+        in >> nume;
+        std::shared_ptr<Meniu> menu;
+        menu -> readData(in);
+
+        invitati.push_back(std::make_shared<Invitat>(*menu, nume));
+    }
+}
+
+void Masa::writeData(std::ofstream &out) {
+    out << numar_locuri << " " << pret_consumabile_masa << "\n";
+    out << angajati.size() << "\n";
+    for (auto &a : angajati) {
+        a -> writeData(out);
+    }
+
+    out << invitati.size() << "\n";
+    for (auto &a : invitati) {
+        a -> writeData(out);
+    }
 }

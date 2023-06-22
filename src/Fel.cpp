@@ -51,6 +51,26 @@ std::shared_ptr<Fel> Fel_Copil::clone() const {
     return std::make_shared<Fel_Copil>(*this);
 }
 
+void Fel_Normal::writeData(std::ofstream &out) {
+    out << 0 << "\n";
+    out << nume << "\n" << pret << " " << pretCarne << " " << pretOrigineAnimala << "\n";
+}
+
+void Fel_Vegan::writeData(std::ofstream &out) {
+    out << 1 << "\n";
+    out << nume << "\n" << pret << " " << pretInlocuitorProteine << " " << pretInlocuitorLactate << "\n";
+}
+
+void Fel_Vegetarian::writeData(std::ofstream &out) {
+    out << 2 << "\n";
+    out << nume << "\n" << pret << " " << pretOrigineAnimala << " " << pretInlocuitorProteine << "\n";
+}
+
+void Fel_Copil::writeData(std::ofstream &out) {
+    out << 3 << "\n";
+    out << nume << "\n" << pret << " " << pretDulciuri << " " << pretFructe << "\n";
+}
+
 std::shared_ptr<Fel> Fel_Factory::aperitiv_Normal() {
     return std::make_shared<Fel_Normal>(Fel_Normal("Chiftele, salată, mezeluri", 8.7, 12.5, 9.4));
 }

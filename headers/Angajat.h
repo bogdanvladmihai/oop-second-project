@@ -8,6 +8,7 @@
 #include <iostream>
 #include <string>
 #include <memory>
+#include <fstream>
 
 class Angajat {
 private:
@@ -20,6 +21,7 @@ public:
     void setSalariu(const int salariu_);
     bool operator < (const Angajat &other) const;
     friend std::ostream& operator << (std::ostream &out, const Angajat &A);
+    void writeData(std::ofstream &out);
 };
 
 class Angajat_Factory {
